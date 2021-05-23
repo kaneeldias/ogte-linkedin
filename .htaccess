@@ -1,0 +1,36 @@
+<Files *>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files signup.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files confirmation.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<Files />
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Except root
+<FilesMatch "^$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# add trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .*[^/]$ $0/ [L,R=301]
+
